@@ -8,7 +8,7 @@
 
 🌍 **Read in:** [English](#-english) | [Монгол хэлээр унших](#-монгол)
 
-🚀 **Live Demo:** https://img.shields.io/badge/UI-Minimal-black?style=flat-square*
+🚀 **Live Demo:** https://latin-to-cryllic.vercel.app/*
 
 ---
 
