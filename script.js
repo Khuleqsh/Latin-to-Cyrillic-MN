@@ -69,7 +69,7 @@ function basicReplace(text, dir) {
 const $ = id => document.getElementById(id);
 const get = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) ?? d } catch { return d } };
 const set = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)) } catch {} };
-let isDark = matchMedia('(prefers-color-scheme: dark)').matches, currentLang = 'mn', direction = 'lat-cyr', aiOn = true, reqId = 0, aiTimer, histTimer;
+let isDark = localStorage.getItem('cv_theme') === 'dark', currentLang = 'mn', direction = 'lat-cyr', aiOn = true, reqId = 0, aiTimer, histTimer;
 
 const T = {
   mn: { labelLat: "Латин (Ухаалаг)", labelCyr: "Кирилл", phIn: "ymr ch ugiig yrn bl... гэх мэтээр бичнэ үү", phOut: "Ухаалгаар таамаглаж энд гаргана...", copy: "Хуулах", copied: "Хууллаа!", import: "Оруулах", export: "Татах", paste: "Буулгах", word: "Үг", char: "Тэмдэгт", hist: "Сүүлийн түүх", empty: "Түүх хоосон байна.", rate: "AI зөв хөрвүүлсэн үү?", thinking: "AI бодож байна…", ready: "AI хөрвүүлсэн", offline: "Офлайн горим", thanks: "Баярлалаа! Би сурлаа", fixit: "Засаад 👍 дарвал би сурна", pasteFail: "Буулгах боломжгүй", title: "Хөрвүүлэгч" },
@@ -145,7 +145,7 @@ $('exportBtn').onclick = () => { if (!output.value) return; const a = document.c
 $('copyBtn').onclick = () => { if (!output.value) return; navigator.clipboard.writeText(output.value).then(() => toast(tr().copied)); };
 $('swapBtn').onclick = () => { direction = direction === 'lat-cyr' ? 'cyr-lat' : 'lat-cyr'; input.value = output.value; setLabels(); update(); };
 $('langToggle').onclick = e => { currentLang = currentLang === 'mn' ? 'en' : 'mn'; e.target.textContent = currentLang === 'mn' ? 'EN' : 'MN'; document.documentElement.lang = currentLang; applyLang(); };
-$('themeToggle').onclick = () => { isDark = !isDark; applyTheme(); };
+$('themeToggle').onclick = () => { isDark = !isDark; localStorage.setItem('cv_theme', isDark ? 'dark' : 'light'); applyTheme(); };
 $('aiToggle').onclick = e => { aiOn = !aiOn; e.currentTarget.classList.toggle('on', aiOn); if (aiOn) update(); else { reqId++; status('offline'); output.value = localConvert(input.value); } };
 
 $('historyToggle').onclick = () => {
