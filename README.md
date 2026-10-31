@@ -1,106 +1,177 @@
-Markdown
-# 🇲🇳 Smart Latin-Cyrillic Converter | Ухаалаг Латин-Кирилл Хөрвүүлэгч
+# 🇲🇳 Smart Latin–Cyrillic Converter | Ухаалаг Латин–Кирилл Хөрвүүлэгч
 
-![UI Preview](https://img.shields.io/badge/UI-Glassmorphism-blue?style=flat-square)
-![Mode](https://img.shields.io/badge/Mode-Dark%2FLight-lightgrey?style=flat-square)
-![Tech Stack](https://img.shields.io/badge/Tech-HTML5%20%7C%20CSS3%20%7C%20Vanilla%20JS-yellow?style=flat-square)
-![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
+![UI](https://img.shields.io/badge/UI-Minimal-black?style=flat-square)
+![Mode](https://img.shields.io/badge/Mode-Light%20%2F%20Dark-lightgrey?style=flat-square)
+![AI](https://img.shields.io/badge/AI-Groq-orange?style=flat-square)
+![Deploy](https://img.shields.io/badge/Deploy-Vercel-black?style=flat-square)
+![Stack](https://img.shields.io/badge/Stack-HTML%20%7C%20CSS%20%7C%20Vanilla%20JS-yellow?style=flat-square)
 
 🌍 **Read in:** [English](#-english) | [Монгол хэлээр унших](#-монгол)
 
-🚀 **Live Demo:** [Experience the Smart Converter Here](https://khuleqsh.github.io/Latin-to-Cyrillic-MN/)
+🚀 **Live Demo:** https://img.shields.io/badge/UI-Minimal-black?style=flat-square*
 
 ---
 
 ## <a name="-english"></a> 🇬🇧 English
 
-A lightning-fast, offline-capable web application that automatically converts Mongolian Latin (Galig) text into Cyrillic script (and vice versa) in real-time. 
+A fast web app that converts Mongolian Latin chat-slang into proper Cyrillic (and back) in real time. It combines a **built-in rule-based engine** with an **AI layer powered by Groq**, so results are instant *and* context-aware.
 
-Unlike standard translators, this tool is powered by a custom **NLP (Natural Language Processing)** engine built directly into the browser. It intelligently predicts internet chat slang, expands abbreviations, and correctly applies suffix and vowel harmony rules—all without relying on external APIs.
+### ✨ Features
 
-### ✨ Key Features
-
-- **🧠 Smart Chat NLP Engine:** Automatically recognizes and expands common Mongolian internet abbreviations. 
-  - *Example:* `ymr ch ugiig yrn bl` ➔ `ямар ч үгийг ер нь бол`
-- **🧩 Advanced Morphology:** Intelligently separates root words from suffixes to apply accurate vowel harmony. 
-  - *Example:* `ugiig` ➔ `ug` + `iig` ➔ `үгийг`
-- **🔄 Two-Way Real-Time Conversion:** Instant translation as you type (Latin ➔ Cyrillic & Cyrillic ➔ Latin).
-- **🔠 Smart Capitalization & Digraphs:** Accurately converts multi-character Latin inputs (`sh` ➔ `ш`, `ch` ➔ `ч`) while preserving correct sentence and name capitalization.
-- **💾 Auto-Save & History:** Never lose your work. The app automatically saves your current progress and maintains a history of your last 5 conversions.
-- **📄 Import & Export .txt:** Seamlessly upload large `.txt` files for bulk conversion and instantly download the result.
-- **🌓 Modern Glassmorphism UI:** A beautiful, Apple-inspired interface featuring Dark/Light modes and a bilingual (English/Mongolian) UI.
+- **✨ AI conversion (Groq):** after you stop typing, the AI refines the result using context: vowel harmony, abbreviations and spelling.
+  - `ymr ch ugiig yrn bl` ➔ `ямар ч үгийг ер нь бол`
+- **🛟 Always works:** if the AI is unavailable or offline, the built-in engine keeps converting. The app never breaks.
+- **🧠 Learns from you:** rate the result with 👍 / 👎. Edit a wrong answer, press 👍, and the app remembers your correction. Learned words go into a personal dictionary and the latest examples are sent to the AI as guidance.
+- **🧩 Smart engine:** a chat-abbreviation dictionary, suffix detection (`ugiig` ➔ `ug` + `iig` ➔ `үгийг`), digraphs (`sh` ➔ `ш`, `ch` ➔ `ч`) and capitalization.
+- **🔄 Two-way:** Latin ➔ Cyrillic and Cyrillic ➔ Latin.
+- **💾 Auto-save & history:** your text is saved automatically, with the last 5 entries in history.
+- **📄 Import / Export `.txt`** and a one-click **Paste / Clear / Copy**.
+- **🌓 Clean, minimal UI:** light mode by default, dark mode on demand (your choice is remembered), English / Mongolian interface, responsive on mobile.
+- **🔒 API key stays secret:** the Groq key lives only in Vercel environment variables and is used by a serverless function, never exposed in the browser.
 
 ### ⌨️ Keyboard Shortcuts
 
-Built for power users and maximum productivity:
-- `Ctrl + Shift + S` : Swap conversion direction (Latin ↔ Cyrillic)
-- `Ctrl + Shift + C` : Copy the converted output to clipboard
+| Shortcut | Action |
+|---|---|
+| `Ctrl + Enter` | Convert with AI now |
+| `Ctrl + K` | Clear |
+| `Ctrl + S` | Export result as `.txt` |
+| `Ctrl + O` | Import a `.txt` file |
+| `Alt + C` | Copy result |
+| `Alt + S` | Swap direction (Latin ↔ Cyrillic) |
+| `Esc` | Close history |
+
+On Mac, use `Cmd` instead of `Ctrl`.
 
 ### 🛠️ Tech Stack
 
-Built with pure, lightweight web technologies. No heavy frameworks or external libraries required.
-- **HTML5:** Semantic web structure
-- **CSS3:** Modern styling, Glassmorphism, and responsive design
-- **Vanilla JavaScript (ES6):** Core NLP algorithms, conversion logic, and DOM manipulation
+- **Frontend:** HTML5, CSS3, Vanilla JavaScript (no frameworks)
+- **AI:** [Groq API](https://console.groq.com) (`llama-3.3-70b-versatile`)
+- **Backend:** Vercel Serverless Function (`api/ai.js`)
+- **Hosting:** Vercel, deployed from GitHub
+
+### 📁 Project Structure
+
+```
+├── index.html     # page markup
+├── style.css      # minimal light/dark design
+├── script.js      # rule-based engine + UI + AI + learning
+└── api/
+    └── ai.js      # serverless function that calls Groq (key stays server-side)
+```
 
 ### 🚀 Getting Started
 
-1. Clone the repository to your local machine:
-   ```bash
-   git clone [https://github.com/Khuleqsh/Latin-to-Cyrillic-MN.git](https://github.com/Khuleqsh/Latin-to-Cyrillic-MN.git)
-Open the cloned folder.
+**Deploy your own (Vercel):**
 
-Simply double-click index.html to open it in any modern web browser.
+1. Fork or clone this repository.
+2. Create an API key at [console.groq.com](https://console.groq.com).
+3. In [Vercel](https://vercel.com): **Add New → Project**, import the repository.
+4. Under **Environment Variables** add `GROQ_API_KEY` = your key (select all environments).
+5. Click **Deploy**.
 
-Enjoy 100% offline, instant conversions!
+**Run locally:**
 
- 🇲🇳 Монгол
-Шууд туршиж үзэх: Энд дарж хөрвүүлэгч рүү орно уу
+```bash
+git clone https://github.com/Khuleqsh/Latin-to-Cyrillic-MN.git
+cd Latin-to-Cyrillic-MN
+npm i -g vercel
+echo "GROQ_API_KEY=your_key_here" > .env
+vercel dev
+```
 
-Монгол хэлний галиг (латин) болон кирилл үсгийн хооронд бодит хугацаанд автоматаар хөрвүүлэх дэвшилтэт, вэб суурьтай ухаалаг хөрвүүлэгч.
+Opening `index.html` directly also works, but only the built-in engine will run (no AI).
 
-Энэхүү төсөл нь гадны API ашиглахгүйгээр хөтөч дээр шууд ажиллах бөгөөд хүмүүсийн интернэт орчинд түгээмэл ашигладаг чатын товчлол, үгсийн үндэс, дагавар нөхцөлийг автоматаар таньж, эгшиг зохицуулан хөрвүүлэх Ухаалаг Таамаглагч (NLP) хөдөлгүүртэйгээрээ онцлог юм.
+> ⚠️ Never commit your API key. `.env` is already listed in `.gitignore`.
 
-✨ Онцлох боломжууд
-🧠 Ухаалаг чатын товчлол (NLP): Хүмүүсийн их бичдэг товчлолуудыг автоматаар бүтэн үг болгоно.
+### 🗺️ Roadmap
 
-Жишээ нь: ymr ch ugiig yrn bl ➔ ямар ч үгийг ер нь бол
+- [ ] Rate limiting for the AI endpoint
+- [ ] Shared learning across all users (database + moderation)
+- [ ] Voice input
+- [ ] Installable PWA
 
-🧩 Дагавар, нөхцөл таних алгоритм: Үгийн үндэс болон дагаврыг салгаж, эгшиг зохицох дүрмээр алдаагүй хөрвүүлнэ.
+---
 
-Жишээ нь: ugiig ➔ ug + iig ➔ үгийг
+## <a name="-монгол"></a> 🇲🇳 Монгол
 
-🔄 Хоёр чиглэлт хөрвүүлэлт: Бичихтэй зэрэгцэн Латинаас Кирилл рүү, мөн Кирилээс Латин руу шууд хөрвүүлнэ.
+Монгол хэлний латин (галиг) бичвэрийг кирилл рүү (мөн буцааж) шууд хөрвүүлдэг вэб апп. **Өөрийн дүрэмт хөдөлгүүр** болон **Groq AI** хоёрыг хослуулсан тул үр дүн нь хурдан бөгөөд утгыг ойлгосон байдаг.
 
-🔠 Том үсэг & Хос үсгийн мэдрэмж: sh ➔ ш, ch ➔ ч зэрэг хос үсгүүдийг танихаас гадна, хүний нэр, өгүүлбэрийн эхний үсгийг алдаагүй томоор бичнэ.
+### ✨ Боломжууд
 
-💾 Түүх болон Автомат хадгалалт: Хуудсаа санамсаргүй шинэчлэхэд текст устгахаас сэргийлж автоматаар хадгалах бөгөөд сүүлийн 5 түүхээ харах боломжтой.
+- **✨ AI хөрвүүлэлт (Groq):** бичихээ болиход AI контекстоор нь эгшиг зохицол, товчлол, зөв бичгийг сайжруулна.
+  - `ymr ch ugiig yrn bl` ➔ `ямар ч үгийг ер нь бол`
+- **🛟 Үргэлж ажиллана:** AI ажиллахгүй эсвэл интернэтгүй үед суурь хөдөлгүүр маань хөрвүүлсээр байна. Апп хэзээ ч эвдрэхгүй.
+- **🧠 Хэрэглэгчээс суралцана:** үр дүнг 👍 / 👎-аар үнэлнэ. Буруу хариуг засаад 👍 дарвал засварыг тань санана. Суралцсан үгс хувийн толь болж, сүүлийн жишээнүүд AI-д чиглүүлэг болон очно.
+- **🧩 Ухаалаг хөдөлгүүр:** чатын товчлолын толь, дагавар таних (`ugiig` ➔ `ug` + `iig` ➔ `үгийг`), хос үсэг (`sh` ➔ `ш`, `ch` ➔ `ч`), том үсгийн мэдрэмж.
+- **🔄 Хоёр чиглэлт:** Латин ➔ Кирилл болон Кирилл ➔ Латин.
+- **💾 Автомат хадгалалт ба түүх:** текст автоматаар хадгалагдаж, сүүлийн 5 түүх харагдана.
+- **📄 `.txt` оруулах / татах**, мөн Буулгах / Цэвэрлэх / Хуулах товчнууд.
+- **🌓 Цэвэрхэн, энгийн дизайн:** анхдагчаар цагаан горим, хүсвэл хар горим (сонголтыг нь санана), Монгол / Англи интерфейс, утсан дээр зохицно.
+- **🔒 API түлхүүр нууцлагдана:** Groq түлхүүр зөвхөн Vercel-ийн environment variable-д хадгалагдаж, серверийн функцээр ашиглагдана. Хөтөч дээр огт харагдахгүй.
 
-📄 Файл оруулах / Татах: Урт хэмжээний текст, нийтлэл хөрвүүлэхийн тулд .txt файл оруулж, үр дүнгээ буцаагаад файл хэлбэрээр татаж авна.
+### ⌨️ Гарын товчлолууд
 
-🌓 Dark / Light горим: Apple-ийн Glassmorphism загварын орчин үеийн, нүдэнд ээлтэй дизайн. Англи болон Монгол хэлний сонголттой.
+| Товчлол | Үйлдэл |
+|---|---|
+| `Ctrl + Enter` | AI-аар шууд хөрвүүлэх |
+| `Ctrl + K` | Цэвэрлэх |
+| `Ctrl + S` | Үр дүнг `.txt` болгон татах |
+| `Ctrl + O` | `.txt` файл оруулах |
+| `Alt + C` | Үр дүнг хуулах |
+| `Alt + S` | Чиглэл солих (Латин ↔ Кирилл) |
+| `Esc` | Түүхийг хаах |
 
-⌨️ Гарын товчлолууд (Shortcuts)
-Хулгана ашиглахгүйгээр хурдан үйлдэл хийх:
+Mac дээр `Ctrl`-ын оронд `Cmd` ашиглана.
 
-Ctrl + Shift + S : Хөрвүүлэх чиглэлийг солих
+### 🛠️ Ашигласан технологи
 
-Ctrl + Shift + C : Хөрвүүлсэн үр дүнг хуулах
+- **Frontend:** HTML5, CSS3, цэвэр JavaScript (фрэймворкгүй)
+- **AI:** [Groq API](https://console.groq.com) (`llama-3.3-70b-versatile`)
+- **Backend:** Vercel Serverless Function (`api/ai.js`)
+- **Hosting:** Vercel (GitHub-аас deploy хийдэг)
 
-🛠️ Ашигласан технологи
-Ямар нэгэн нэмэлт сан, фрэймворк шаардахгүй цэвэр код (Vanilla):
+### 📁 Төслийн бүтэц
 
-HTML5: Вэб хуудасны бүтэц
+```
+├── index.html     # хуудасны бүтэц
+├── style.css      # цагаан/хар горимтой энгийн дизайн
+├── script.js      # дүрэмт хөдөлгүүр + UI + AI + суралцах
+└── api/
+    └── ai.js      # Groq-г дууддаг серверийн функц (түлхүүр сервер дээр үлдэнэ)
+```
 
-CSS3: Өнгө үзэмж, Glassmorphism дизайн
+### 🚀 Хэрхэн ажиллуулах вэ?
 
-JavaScript (ES6): Хөрвүүлэх алгоритм, NLP үйлдэл танигч болон UI логик
+**Өөрөө Vercel дээр deploy хийх:**
 
-🚀 Хэрхэн ажиллуулах вэ?
-Төслийг өөрийн компьютер руу татаж авах:
+1. Repository-г fork эсвэл clone хийнэ.
+2. [console.groq.com](https://console.groq.com) дээр API түлхүүр үүсгэнэ.
+3. [Vercel](https://vercel.com) дээр **Add New → Project** дарж repository-гоо import хийнэ.
+4. **Environment Variables** хэсэгт `GROQ_API_KEY` нэрээр түлхүүрээ нэмнэ (бүх environment-ийг сонгоно).
+5. **Deploy** дарна.
 
-Bash
-git clone [https://github.com/Khuleqsh/Latin-to-Cyrillic-MN.git](https://github.com/Khuleqsh/Latin-to-Cyrillic-MN.git)
-Татаж авсан хавтас руугаа орно.
+**Компьютер дээрээ ажиллуулах:**
 
-index.html файлыг дурын веб хөтөч дээрээ (Chrome, Safari, Edge г.м) нээгээд шууд ашиглаж эхэлнэ. (Интернэтгүй үед ч бүрэн ажиллана!)
+```bash
+git clone https://github.com/Khuleqsh/Latin-to-Cyrillic-MN.git
+cd Latin-to-Cyrillic-MN
+npm i -g vercel
+echo "GROQ_API_KEY=таны_түлхүүр" > .env
+vercel dev
+```
+
+`index.html`-ийг шууд нээж ч болно. Гэхдээ зөвхөн суурь хөдөлгүүр ажиллана (AI байхгүй).
+
+> ⚠️ API түлхүүрээ хэзээ ч GitHub руу commit хийж болохгүй. `.env` нь `.gitignore`-д аль хэдийн орсон.
+
+### 🗺️ Цаашдын төлөвлөгөө
+
+- [ ] AI хандалтад rate limit тавих
+- [ ] Бүх хэрэглэгчээс хамтдаа суралцах (өгөгдлийн сан + шүүлт)
+- [ ] Дуут оруулга
+- [ ] PWA болгож суулгах боломж
+
+---
+
+Made with ♥ by **KhuleqSH**
